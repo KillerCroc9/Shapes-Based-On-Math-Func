@@ -1,15 +1,16 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 using static UnityEngine.Mathf;
+using static UnityEngine.Rendering.DebugUI;
 
 public static class FunctionLibrary
 {
 
 	public delegate Vector3 Function(float u, float v, float t);
 
-	public enum FunctionName { Wave, MultiWave, Ripple, Sphere, Torus , Flower , Something , FlowerSnap }
+	public enum FunctionName { Wave, MultiWave, Ripple, Sphere, Torus , Flower , Something , FlowerSnap , Heart   }
 
-	static Function[] functions = { Wave, MultiWave, Ripple, Sphere, Torus , Flower , Something, FlowerSnap };
+	static Function[] functions = { Wave, MultiWave, Ripple, Sphere, Torus , Flower , Something, FlowerSnap , Heart   };
 
 	public static Function GetFunction(FunctionName name)
 	{
@@ -92,9 +93,33 @@ public static class FunctionLibrary
 	{
 
 		Vector3 p;
-		p.x = (float)((1 + 0.5 * Cos(8 * Mathf.PI * u)) * Cos(2 * Mathf.PI * v));
-		p.y = (float)((1 + 0.5 * Cos(8 * Mathf.PI * u)) * Sin(2 * Mathf.PI * v));
-		p.z = (float)(0.5 * Sin(8 * Mathf.PI * u));
-		return p;
+		p.x = (float)((1 + 0.5 * Cos(8 * PI * u + t)) * Cos(2 * PI * v));
+		p.y = (float)((1 + 0.5 * Cos(8 * PI * u + t)) * Sin(2 * PI * v));
+		p.z = (float)(0.5 * Sin(8 * PI * u + t));
+      
+        return p;
 	}
+    public static Vector3 Heart(float u, float v, float t)
+    {
+        Vector3 p;
+		p.x = 0.2f * 5*(Pow(Sin(u),3)) ;
+		p.y = -0.2f * ((13f * Cos(2 * u)) - (5 * Cos(2 * u)) - (2 * Cos(3 * u)) - Cos(4 * u))+.5f-.3f;
+        p.z = v * Sin(t);
+        if (v >= 0)
+		{
+			p= HeartTop(u, v, t);
+        }
+        
+        return p;
+    }
+    public static Vector3 HeartTop(float u, float v, float t)
+    {
+        Vector3 p;
+        p.x = 0.2f * 5 * (Pow(Sin(u), 3));
+        p.y = 0.2f * ((13f * Cos(u)) - (5 * Cos( u)) - (2 * Cos(2 * u)) - Cos(4 * u))-.55f-.3f ;
+        p.z = (v-1f) * Sin(t);
+
+        return p;
+    }
+  
 }

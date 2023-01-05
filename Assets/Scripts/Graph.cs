@@ -43,7 +43,22 @@ public class Graph : MonoBehaviour
                 v = (z + 0.5f) * step - 1f;
             }
             float u = (x + 0.5f) * step - 1f;
+            Vector3 vector3 = f(u, v, time);
             points[i].localPosition = f(u, v, time);
+          
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (function == FunctionLibrary.FunctionName.Heart)
+            {
+                function = FunctionLibrary.FunctionName.Wave;
+            }
+            else
+            {
+                function += 1;
+            }
+           
+        }
+
     }
 }
