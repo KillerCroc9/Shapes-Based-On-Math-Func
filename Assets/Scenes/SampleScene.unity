@@ -504,7 +504,8 @@ MonoBehaviour:
   pointPrefab: {fileID: 6264263984211790763, guid: 4e1af500c7e7d2f44b8d8c4524652976, type: 3}
   resolution: 100
   function: 0
-  transitionDuration: 2
+  transitionDuration: 1
+  duration: 0
   transitioning: 0
   transitionFunction: 0
 --- !u!4 &1303311364
