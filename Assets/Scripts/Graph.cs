@@ -21,7 +21,8 @@ public class Graph : MonoBehaviour
     bool transitioning;
     [SerializeField]
     FunctionLibrary.FunctionName transitionFunction;
-
+    [SerializeField]
+    bool key;
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +89,10 @@ public class Graph : MonoBehaviour
         }
        
     }
+    public void keycheck()
+    {
+        key = true;
+    }
     void RegularFunction()
     {
         FunctionLibrary.Function f = FunctionLibrary.GetFunction(function);
@@ -107,8 +112,9 @@ public class Graph : MonoBehaviour
             points[i].localPosition = f(u, v, time);
 
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)||key==true)
         {
+            key = false;
             transitioning = true;
             if (function == FunctionLibrary.FunctionName.Heart)
             {
