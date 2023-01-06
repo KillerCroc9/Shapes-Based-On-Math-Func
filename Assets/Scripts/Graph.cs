@@ -36,7 +36,7 @@ public class Graph : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!transitioning)
         {

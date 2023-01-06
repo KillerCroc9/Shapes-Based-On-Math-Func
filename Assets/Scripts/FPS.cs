@@ -19,8 +19,13 @@ public class FPS : MonoBehaviour
 
 	float duration, bestDuration = float.MaxValue, worstDuration;
 
+    private void Start()
+    {
+
+	}
 	void Update()
 	{
+
 		float frameDuration = Time.unscaledDeltaTime;
 		frames += 1;
 		duration += frameDuration;
