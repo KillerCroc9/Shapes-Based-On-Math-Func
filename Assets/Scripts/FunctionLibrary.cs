@@ -102,24 +102,22 @@ public static class FunctionLibrary
     public static Vector3 Heart(float u, float v, float t)
     {
         Vector3 p;
-		p.x = 0.2f * 5*(Pow(Sin(u),3)) * -Sin(v);
-		p.y = -0.2f * ((13f * Cos(2 * u)) - (5 * Cos(2 * u)) - (2 * Cos(3 * u)) - Cos(4 * u))+.5f-.4f;
-        p.z = v * -Abs(Sin(t * 2));
-        if (v >= 0)
+		if (v <= 0)
 		{
-			p= HeartTop(u, v, t);
+			p.x = 0.2f * 5 * (Pow(Sin(u), 3)) * -Sin(v);
+			p.y = -0.2f * ((13f * Cos(2 * u)) - (5 * Cos(2 * u)) - (2 * Cos(3 * u)) - Cos(4 * u)) + .5f - .4f;
+			p.z = v * -Abs(Sin(t * 2));
+		}
+	    else
+		{
+            p.x = 0.2f * 5 * (Pow(Sin(u), 3)) * -Sin((v - 1));
+            p.y = 0.2f * ((13f * Cos(u)) - (5 * Cos(u)) - (2 * Cos(2 * u)) - Cos(4 * u)) - .55f - .4f;
+            p.z = (v - 1f) * -Abs(Sin(t * 2));
         }
         
         return p;
     }
-    public static Vector3 HeartTop(float u, float v, float t)
-    {
-        Vector3 p;
-        p.x = 0.2f * 5 * (Pow(Sin(u), 3)) * -Sin((v -1));
-        p.y = 0.2f * ((13f * Cos(u)) - (5 * Cos( u)) - (2 * Cos(2 * u)) - Cos(4 * u))-.55f-.4f ;
-		p.z = (v - 1f) * -Abs(Sin(t*2));
-        return p;
-    }
+   
 	public static Vector3 Morph(float u, float v, float t, Function from, Function to, float progress)
 	{
 		return Vector3.LerpUnclamped(from(u, v, t), to(u, v, t), SmoothStep(0f, 1f, progress));
