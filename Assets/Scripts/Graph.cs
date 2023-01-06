@@ -14,7 +14,8 @@ public class Graph : MonoBehaviour
     FunctionLibrary.FunctionName function;
 
     [SerializeField, Min(0f)]
-    float transitionDuration = 1f;
+    float transitionDuration;
+    [SerializeField, Min(0f)]
     float duration;
     [SerializeField]
     bool transitioning;
